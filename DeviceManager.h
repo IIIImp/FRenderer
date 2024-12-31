@@ -4,14 +4,6 @@
 #include "vulkan/vulkan.h"
 #include "FRender.h"
 
-struct QueueFamilyIndices {
-	uint32_t graphicsFamily = -1;
-	uint32_t presentFamily = -1;
-	bool isComplete() {
-		return graphicsFamily >= 0; // && presentFamily >= 0;
-	}
-};
-
 class DeviceManager {
 public:
 	DeviceManager(VkInstance instance, VkSurfaceKHR surface);

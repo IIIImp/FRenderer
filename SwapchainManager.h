@@ -7,22 +7,26 @@
 
 class SwapchainManager {
 public:
-	SwapchainManager(VkDevice device, VkPhysicalDevice physicalDevice, GLFWwindow* window, VkSurfaceKHR surface);
+	SwapchainManager(VkDevice device, VkPhysicalDevice physicalDevice, GLFWwindow* window, VkSurfaceKHR surface, QueueFamilyIndices indices);
 	~SwapchainManager();
 	VkSwapchainKHR getSwapchain() const;
 	const std::vector<VkImageView>& getImageView() const;
+	VkFormat getImageFormat() const;
+	VkExtent2D getExtent() const;
 
 	void recreateSwapchain();
 private:
+	VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
 	VkDevice device = VK_NULL_HANDLE;
 	VkSwapchainKHR swapchain = VK_NULL_HANDLE;
 	VkSurfaceKHR surface = VK_NULL_HANDLE;
 	GLFWwindow* window = nullptr;
 
-	VkFormat imageFormat;
-	VkExtent2D extent;
+	VkFormat imageFormat = {};
+	VkExtent2D extent = {};
 	std::vector<VkImage> images;
 	std::vector<VkImageView> imageViews;
+	QueueFamilyIndices queueFamilyIndices;
 
 	SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device);
 	VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
