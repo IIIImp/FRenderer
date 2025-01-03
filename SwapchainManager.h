@@ -8,6 +8,7 @@
 class SwapchainManager {
 public:
 	SwapchainManager(VkDevice device, VkPhysicalDevice physicalDevice, GLFWwindow* window, VkSurfaceKHR surface, QueueFamilyIndices indices);
+	SwapchainManager(VulkanContext& context);
 	~SwapchainManager();
 	VkSwapchainKHR getSwapchain() const;
 	const std::vector<VkImageView>& getImageView() const;

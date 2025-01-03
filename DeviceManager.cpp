@@ -3,10 +3,17 @@
 #include "vulkan/vulkan.h"
 #include <GLFW/glfw3.h>  
 
-DeviceManager::DeviceManager(VkInstance instance, VkSurfaceKHR surface) : instance(instance), surface(surface)
+DeviceManager::DeviceManager(VulkanContext& context)
 {
+	instance = context.instance;
+	surface = context.surface;
 	pickPhysicalDevice();
 	createLogicalDevice();
+	context.physicalDevice = physicalDevice;
+	context.device = logicalDevice;
+	context.queueFamilyIndices = queueFamilyIndices;
+	context.graphicsQueue = graphicsQueue;
+	context.presentQueue = presentQueue;
 }
 
 DeviceManager::~DeviceManager()

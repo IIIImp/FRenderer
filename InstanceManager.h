@@ -9,14 +9,14 @@
 
 class InstanceManager {
 public:
-	static InstanceManager& getInstanceManager();
+	static InstanceManager& getInstanceManager(VulkanContext &context);
 
 	GLFWwindow* getWindow() const;
 	VkInstance getVkInstance() const;
 	VkSurfaceKHR getSurface() const;
 
 private:
-	InstanceManager();
+	InstanceManager(VulkanContext &context);
 	~InstanceManager();
 
 	VkInstance vkInstance;

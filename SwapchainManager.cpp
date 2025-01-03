@@ -6,6 +6,21 @@ SwapchainManager::SwapchainManager(VkDevice device, VkPhysicalDevice physicalDev
 	createImageViews();
 }
 
+SwapchainManager::SwapchainManager(VulkanContext& context)
+{
+	device = context.device;
+	physicalDevice = context.physicalDevice;
+	window = context.window;
+	surface = context.surface;
+	queueFamilyIndices = context.queueFamilyIndices;
+	createSwapChain();
+	createImageViews();
+	context.swapchain = swapchain;
+	context.swapchainExtent = extent;
+	context.swapchainImageFormat = imageFormat;
+	context.swapchainImageViews = imageViews;
+}
+
 SwapchainManager::~SwapchainManager()
 {
 	for (auto imageView : imageViews) {

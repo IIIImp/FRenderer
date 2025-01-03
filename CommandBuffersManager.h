@@ -7,6 +7,7 @@
 class CommandBufferManager {
 public:
 	CommandBufferManager(VkDevice device, QueueFamilyIndices indices, size_t bufferCount);
+	CommandBufferManager(VulkanContext& context);
 	~CommandBufferManager();
 
 	VkCommandPool getCommandPool();

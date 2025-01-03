@@ -7,6 +7,7 @@
 class PipelineManager {
 public:
 	PipelineManager(VkDevice device, VkExtent2D extent, VkFormat format);
+	PipelineManager(VulkanContext &context);
 	~PipelineManager();
 
 	VkPipeline getGraphicsPipeline() const;

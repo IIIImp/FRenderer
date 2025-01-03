@@ -7,6 +7,7 @@
 class FramebufferManager {
 public:
     FramebufferManager(VkDevice device, VkRenderPass renderPass, const std::vector<VkImageView>& imageViews, VkExtent2D extent);
+    FramebufferManager(VulkanContext &context);
     ~FramebufferManager();
 
     const std::vector<VkFramebuffer>& getFramebuffers() const;

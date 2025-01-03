@@ -6,7 +6,7 @@
 
 class DeviceManager {
 public:
-	DeviceManager(VkInstance instance, VkSurfaceKHR surface);
+	DeviceManager(VulkanContext &context);
 	~DeviceManager();
 
 	VkPhysicalDevice getPhysicalDevice() const;

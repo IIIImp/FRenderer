@@ -6,6 +6,13 @@ FramebufferManager::FramebufferManager(VkDevice device, VkRenderPass renderPass,
 	createFramebuffers(renderPass, imageViews, extent);
 }
 
+FramebufferManager::FramebufferManager(VulkanContext &context)
+{
+	device = context.device;
+	createFramebuffers(context.renderPass, context.swapchainImageViews, context.swapchainExtent);
+	context.swapchainFrameBuffers = framebuffers;
+}
+
 FramebufferManager::~FramebufferManager()
 {
 	for (auto framebuffer : framebuffers) {

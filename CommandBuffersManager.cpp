@@ -6,6 +6,16 @@ CommandBufferManager::CommandBufferManager(VkDevice device, QueueFamilyIndices i
 	createCommandBuffers(bufferCount);
 }
 
+CommandBufferManager::CommandBufferManager(VulkanContext& context)
+{
+	device = context.device;
+	indices = context.queueFamilyIndices;
+	createCommandPool();
+	createCommandBuffers(context.bufferCount);
+	context.commandPool = commandPool;
+	context.commandBuffers = commandBuffers;
+}
+
 CommandBufferManager::~CommandBufferManager()
 {
 	vkDestroyCommandPool(device, commandPool, nullptr);

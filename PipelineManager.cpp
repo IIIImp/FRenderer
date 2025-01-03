@@ -7,6 +7,18 @@ PipelineManager::PipelineManager(VkDevice device, VkExtent2D extent, VkFormat fo
 	createGraphicsPipeline();
 }
 
+PipelineManager::PipelineManager(VulkanContext &context)
+{
+	device = context.device;
+	extent = context.swapchainExtent;
+	format = context.swapchainImageFormat;
+	createRenderPass();
+	createGraphicsPipeline();
+	context.graphicsPipeline = graphicsPipeline;
+	context.renderPass = renderPass;
+	context.pipelineLayout = pipelineLayout;
+}
+
 PipelineManager::~PipelineManager()
 {
 	vkDestroyPipeline(device, graphicsPipeline, nullptr);

@@ -6,11 +6,14 @@
 #include <iostream>
 
 
-InstanceManager::InstanceManager()
+InstanceManager::InstanceManager(VulkanContext &context)
 {
 	initGLFW();
 	createInstance();
 	createSurface();
+	context.instance = vkInstance;
+	context.window = window;
+	context.surface = surface;
 }
 
 InstanceManager::~InstanceManager()
@@ -23,9 +26,9 @@ InstanceManager::~InstanceManager()
 	glfwTerminate();
 }
 
-InstanceManager& InstanceManager::getInstanceManager()
+InstanceManager& InstanceManager::getInstanceManager(VulkanContext &context)
 {
-	static InstanceManager instanceManager;
+	static InstanceManager instanceManager(context);
 	return instanceManager;
 }
 
